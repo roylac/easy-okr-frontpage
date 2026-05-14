@@ -1,0 +1,133 @@
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ── */
+:root {
+  --cream: #F8F5F0;
+  --white: #FFFFFF;
+  --teal: #0D6E5A;
+  --teal-light: #E0F5EE;
+  --teal-mid: #1B9A7A;
+  --amber: #D4831A;
+  --amber-light: #FDF3E4;
+  --navy: #152B3C;
+  --slate: #4A5E6D;
+  --mist: #EAF2EF;
+  --border: rgba(13,110,90,0.12);
+  --shadow-soft: 0 4px 32px rgba(21,43,60,0.08);
+  --shadow-card: 0 2px 16px rgba(21,43,60,0.06);
+  --r: 14px;
+  --r-sm: 8px;
+}
+
+/* ── BASE ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(248,245,240,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5vw;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+.logo span { color: var(--amber); }
+
+nav ul { list-style: none; display: flex; gap: 2rem; }
+nav ul li a {
+  text-decoration: none;
+  color: var(--slate);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+nav ul li a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--white) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  transition: background 0.2s, transform 0.15s !important;
+  text-decoration: none;
+}
+.nav-cta:hover { background: #0a5847 !important; transform: translateY(-1px); color: var(--white) !important; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 3rem 5vw;
+  margin-top: 4rem;
+}
+.footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-left .logo { font-size: 1.25rem; }
+.footer-left p { font-size: 0.8rem; color: var(--slate); margin-top: 0.4rem; }
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { text-decoration: none; color: var(--slate); font-size: 0.85rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-right { font-size: 0.78rem; color: #9BAAB5; text-align: right; }
+.footer-right a { color: var(--teal); text-decoration: none; }
+
+/* ── REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── SHARED PAGE HEADER (subpages) ── */
+.page-tag {
+  display: inline-flex; align-items: center;
+  background: var(--teal-light);
+  color: var(--teal);
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  margin-bottom: 1.25rem;
+}
+
+.page-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav ul { display: none; }
+}

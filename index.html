@@ -6,79 +6,8 @@
 <title>EasyOKR – Align. Focus. Achieve.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --cream: #F8F5F0;
-    --white: #FFFFFF;
-    --teal: #0D6E5A;
-    --teal-light: #E0F5EE;
-    --teal-mid: #1B9A7A;
-    --amber: #D4831A;
-    --amber-light: #FDF3E4;
-    --navy: #152B3C;
-    --slate: #4A5E6D;
-    --mist: #EAF2EF;
-    --border: rgba(13,110,90,0.12);
-    --shadow-soft: 0 4px 32px rgba(21,43,60,0.08);
-    --shadow-card: 0 2px 16px rgba(21,43,60,0.06);
-    --r: 14px;
-    --r-sm: 8px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--cream);
-    color: var(--navy);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(248,245,240,0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 5vw;
-    height: 68px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-
-  .logo {
-    font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--teal);
-    letter-spacing: -0.5px;
-    text-decoration: none;
-  }
-  .logo span { color: var(--amber); }
-
-  nav ul { list-style: none; display: flex; gap: 2rem; }
-  nav ul li a {
-    text-decoration: none;
-    color: var(--slate);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  nav ul li a:hover { color: var(--teal); }
-
-  .nav-cta {
-    background: var(--teal);
-    color: var(--white) !important;
-    padding: 0.5rem 1.25rem;
-    border-radius: 100px;
-    font-weight: 600 !important;
-    font-size: 0.875rem !important;
-    transition: background 0.2s, transform 0.15s !important;
-  }
-  .nav-cta:hover { background: #0a5847 !important; transform: translateY(-1px); color: var(--white) !important; }
 
   /* ── HERO ── */
   .hero {
@@ -527,17 +456,6 @@
   .footer-right { font-size: 0.78rem; color: #9BAAB5; text-align: right; }
   .footer-right a { color: var(--teal); text-decoration: none; }
 
-  /* ── ANIMATIONS ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; padding-top: 100px; }
@@ -545,7 +463,6 @@
     .float-tl, .float-br { display: none; }
     .how-grid { grid-template-columns: 1fr; }
     .cta-inner { grid-template-columns: 1fr; }
-    nav ul { display: none; }
   }
 </style>
 </head>
@@ -825,8 +742,9 @@
     <div class="footer-links">
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
-      <a href="mailto:info@easyokr.eu">Contact</a>
-      <a href="#">Privacy policy</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy policy</a>
+      <a href="terms-of-service.html">Terms of service</a>
     </div>
     <div class="footer-right">
       <p><a href="mailto:info@easyokr.eu">info@easyokr.eu</a></p>
