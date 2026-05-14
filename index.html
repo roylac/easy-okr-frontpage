@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyOKR – Align. Focus. Achieve.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F8F5F0;
+    --white: #FFFFFF;
+    --teal: #0D6E5A;
+    --teal-light: #E0F5EE;
+    --teal-mid: #1B9A7A;
+    --amber: #D4831A;
+    --amber-light: #FDF3E4;
+    --navy: #152B3C;
+    --slate: #4A5E6D;
+    --mist: #EAF2EF;
+    --border: rgba(13,110,90,0.12);
+    --shadow-soft: 0 4px 32px rgba(21,43,60,0.08);
+    --shadow-card: 0 2px 16px rgba(21,43,60,0.06);
+    --r: 14px;
+    --r-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,245,240,0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5vw;
+    height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+  .logo span { color: var(--amber); }
+
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul li a {
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav ul li a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: var(--teal);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-weight: 600 !important;
+    font-size: 0.875rem !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: #0a5847 !important; transform: translateY(-1px); color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 120px 5vw 80px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--teal-light);
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(13,110,90,0.18);
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); display: inline-block; animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.6rem, 4vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--slate);
+    max-width: 440px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--teal);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(13,110,90,0.3);
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #0a5847; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(13,110,90,0.38); }
+
+  .btn-ghost {
+    color: var(--navy);
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--teal); }
+  .btn-ghost svg { transition: transform 0.2s; }
+  .btn-ghost:hover svg { transform: translateX(3px); }
+
+  .hero-trust {
+    margin-top: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.82rem; color: var(--slate);
+  }
+  .trust-avatars { display: flex; }
+  .trust-avatars span {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 600; color: var(--white);
+    margin-right: -8px;
+  }
+  .av1 { background: #2E7D60; }
+  .av2 { background: #1B6FA8; }
+  .av3 { background: #8B5E3C; }
+  .av4 { background: #A0522D; }
+
+  /* ── HERO IMAGE ── */
+  .hero-visual {
+    position: relative;
+    opacity: 0;
+    animation: slideIn 0.9s 0.3s forwards;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .hero-img-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    position: relative;
+    box-shadow: var(--shadow-soft), 0 0 0 1px var(--border);
+  }
+
+  .hero-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+
+  .hero-card-float {
+    position: absolute;
+    background: var(--white);
+    border-radius: var(--r);
+    padding: 0.85rem 1.1rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+
+  .float-tl {
+    top: -18px; left: -22px;
+    animation: float1 4s ease-in-out infinite;
+  }
+  .float-br {
+    bottom: -18px; right: -22px;
+    animation: float2 4.5s ease-in-out infinite;
+  }
+
+  @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+  @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+  .float-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .fi-teal { background: var(--teal-light); }
+  .fi-amber { background: var(--amber-light); }
+
+  .float-icon svg { width: 20px; height: 20px; }
+  .float-text p { font-size: 0.72rem; color: var(--slate); }
+  .float-text strong { font-size: 0.92rem; color: var(--navy); font-weight: 600; }
+
+  /* ── LOGOS / SOCIAL PROOF ── */
+  .logos-section {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 5vw;
+    text-align: center;
+  }
+  .logos-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: #9BAAB5; margin-bottom: 1.5rem; font-weight: 600; }
+  .logos-row { display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; }
+  .logo-item {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    color: #B0BFCA;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+  }
+
+  /* ── SECTIONS ── */
+  section { max-width: 1280px; margin: 0 auto; padding: 100px 5vw; }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--teal-light);
+    color: var(--teal);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3vw, 2.9rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -1px;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .section-h2 em { font-style: italic; color: var(--teal); }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--slate);
+    max-width: 540px;
+    line-height: 1.75;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── FEATURES ── */
+  #features { background: var(--cream); }
+
+  .features-intro { text-align: center; }
+  .features-intro .section-lead { margin-left: auto; margin-right: auto; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.75rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-mid));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+  .feature-card:hover::after { opacity: 1; }
+
+  .feature-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .feature-icon svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .feature-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .feature-card p { font-size: 0.88rem; color: var(--slate); line-height: 1.65; }
+
+  /* ── HOW IT WORKS ── */
+  #how {
+    background: var(--white);
+    max-width: 100%;
+    padding: 100px 0;
+  }
+
+  .how-inner { max-width: 1280px; margin: 0 auto; padding: 0 5vw; }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .steps { display: flex; flex-direction: column; gap: 2rem; }
+
+  .step {
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    padding: 1.25rem 1.4rem;
+    border-radius: var(--r);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .step:hover, .step.active { background: var(--mist); }
+
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--teal);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .step.active .step-num, .step:hover .step-num {
+    background: var(--teal);
+    color: var(--white);
+  }
+
+  .step h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; }
+  .step p { font-size: 0.87rem; color: var(--slate); line-height: 1.6; }
+
+  .how-visual {
+    background: var(--cream);
+    border-radius: 20px;
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── MOCK DASHBOARD ── */
+  .dash {
+    width: 90%; background: var(--white);
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border);
+  }
+  .dash-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.1rem; }
+  .dash-title { font-size: 0.82rem; font-weight: 600; color: var(--navy); }
+  .dash-period { font-size: 0.72rem; color: var(--slate); background: var(--cream); padding: 0.2rem 0.6rem; border-radius: 100px; }
+
+  .okr-item { margin-bottom: 1rem; }
+  .okr-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+  .okr-name { font-size: 0.78rem; font-weight: 500; color: var(--navy); }
+  .okr-pct { font-size: 0.75rem; font-weight: 600; color: var(--teal); }
+  .okr-bar { height: 6px; background: var(--mist); border-radius: 3px; overflow: hidden; }
+  .okr-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--teal), var(--teal-mid)); transition: width 1s ease; }
+
+  .dash-footer { display: flex; gap: 0.75rem; margin-top: 1.1rem; }
+  .kpi { flex: 1; background: var(--mist); border-radius: 8px; padding: 0.6rem 0.7rem; }
+  .kpi-val { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+  .kpi-lbl { font-size: 0.65rem; color: var(--slate); margin-top: 1px; }
+
+  /* ── PRICING / CTA ── */
+  #cta {
+    background: var(--navy);
+    max-width: 100%;
+    padding: 100px 5vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cta::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,110,90,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+
+  .cta-text .section-tag { background: rgba(13,110,90,0.2); color: #5FD4B0; }
+
+  .cta-text h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .cta-text h2 em { font-style: italic; color: #5FD4B0; }
+  .cta-text p { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+
+  .btn-light {
+    background: var(--white);
+    color: var(--teal);
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-light:hover { background: var(--teal-light); transform: translateY(-2px); }
+
+  .contact-info {
+    margin-top: 1.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    color: rgba(255,255,255,0.55); font-size: 0.85rem;
+  }
+  .contact-info a { color: #5FD4B0; text-decoration: none; font-weight: 500; }
+  .contact-info a:hover { text-decoration: underline; }
+
+  .cta-features {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    padding: 2rem;
+  }
+
+  .cta-feature-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .cta-feature-list li {
+    display: flex; align-items: center; gap: 0.75rem;
+    color: rgba(255,255,255,0.8); font-size: 0.9rem;
+  }
+  .check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(13,110,90,0.35);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .check svg { width: 12px; height: 12px; stroke: #5FD4B0; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 3rem 5vw;
+  }
+  .footer-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-left .logo { font-size: 1.25rem; }
+  .footer-left p { font-size: 0.8rem; color: var(--slate); margin-top: 0.4rem; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { text-decoration: none; color: var(--slate); font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal); }
+  .footer-right { font-size: 0.78rem; color: #9BAAB5; text-align: right; }
+  .footer-right a { color: var(--teal); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 100px; }
+    .hero-visual { order: -1; }
+    .float-tl, .float-br { display: none; }
+    .how-grid { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Easy<span>OKR</span></a>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#cta">Pricing</a></li>
+    <li><a href="mailto:info@easyokr.eu">Contact</a></li>
+  </ul>
+  <a href="#cta" class="btn-primary nav-cta">Start free trial</a>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1280px; margin:0 auto; padding:120px 5vw 80px;">
+  <div class="hero" style="padding:0; margin:0; max-width:none;">
+    <div class="hero-content reveal visible">
+      <div class="hero-badge"><span class="dot"></span> OKR Software for Modern Teams</div>
+      <h1>Set goals that <em>actually</em> get achieved</h1>
+      <p class="hero-sub">EasyOKR gives your team a clear line of sight from daily work to company ambitions. Align effortlessly, track progress in real time, and celebrate wins together.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Start for free →</a>
+        <a href="#how" class="btn-ghost">See how it works
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <span class="av1">AK</span><span class="av2">MJ</span><span class="av3">LE</span><span class="av4">SB</span>
+        </div>
+        <span>Trusted by <strong>1,200+</strong> teams across Europe</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="float-tl hero-card-float">
+        <div class="float-icon fi-teal">
+          <svg viewBox="0 0 24 24" stroke="var(--teal)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div class="float-text"><p>Q2 completion</p><strong>87% on track</strong></div>
+      </div>
+
+      <div class="hero-img-wrap">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&auto=format&fit=crop&q=80" alt="Smiling European business team laughing together in a modern office" loading="lazy">
+      </div>
+
+      <div class="float-br hero-card-float">
+        <div class="float-icon fi-amber">
+          <svg viewBox="0 0 24 24" stroke="var(--amber)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="float-text"><p>Weekly check-in</p><strong>Done ✓</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGOS -->
+<div class="logos-section">
+  <p class="logos-label">Trusted by teams at</p>
+  <div class="logos-row">
+    <span class="logo-item">Nordvik</span>
+    <span class="logo-item">Fjord Analytics</span>
+    <span class="logo-item">Polaris Tech</span>
+    <span class="logo-item">Bergen Labs</span>
+    <span class="logo-item">Astra Nordic</span>
+    <span class="logo-item">Viken Digital</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-intro reveal">
+    <div class="section-tag">Features</div>
+    <h2 class="section-h2">Everything you need to <em>focus on what matters</em></h2>
+    <p class="section-lead">From goal-setting to celebration, EasyOKR has all the tools modern teams need — without the complexity.</p>
+  </div>
+
+  <div class="features-grid">
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg>
+      </div>
+      <h3>Goal Setting & Alignment</h3>
+      <p>Create company, team, and individual OKRs in minutes. Cascade goals down your org chart so every employee sees how their work connects to the big picture.</p>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Real-time Progress Tracking</h3>
+      <p>Live dashboards show exactly where every objective stands. Colour-coded health indicators let you spot at-risk goals before they go off track.</p>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>Team & Individual OKRs</h3>
+      <p>Support cross-functional collaboration with shared OKRs, while also giving individuals ownership of personal key results that ladder up to team outcomes.</p>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3>Check-ins & Status Updates</h3>
+      <p>Weekly nudges keep teams accountable. Structured check-ins capture blockers, confidence levels, and momentum — all in one place, not buried in email chains.</p>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <h3>Analytics & Reporting</h3>
+      <p>Executive-level reports generated in a click. Track OKR completion rates, identify patterns, and share progress with stakeholders using beautiful, shareable dashboards.</p>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Integrations</h3>
+      <p>Connects with Slack, Microsoft Teams, Jira, Notion, and 40+ tools your team already uses. No more context-switching — updates flow where work happens.</p>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <h3>Customisable Review Cycles</h3>
+      <p>Quarterly, monthly, or rolling — you choose the rhythm. Set automated review milestones, scoring sessions, and retrospectives that match how your organisation works.</p>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h3>Role-based Access Control</h3>
+      <p>Fine-grained permissions ensure the right people see the right goals. Keep sensitive company objectives private while keeping team-level OKRs fully transparent.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div id="how">
+  <div class="how-inner">
+    <div class="how-grid">
+      <div>
+        <div class="section-tag reveal">How it works</div>
+        <h2 class="section-h2 reveal">Up and running in <em>under an hour</em></h2>
+        <p class="section-lead reveal">No lengthy onboarding. No consultants. Just a clean, intuitive tool your team will actually use.</p>
+
+        <div class="steps">
+          <div class="step active reveal">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Set your company OKRs</h3>
+              <p>Define 3–5 top-level objectives and the key results that prove you've achieved them. Use our library of 200+ templates to get started fast.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Invite your teams</h3>
+              <p>Add team members via email or SSO. Each team creates their own OKRs that align to the company goals — full visibility, zero guesswork.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Track weekly progress</h3>
+              <p>Automated check-in reminders keep the cadence going. Managers get a clear signal, teams stay accountable, nothing falls through the cracks.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">4</div>
+            <div>
+              <h3>Review, reflect, improve</h3>
+              <p>End-of-quarter scoring and retrospective tools help teams learn fast and set even better OKRs next cycle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-visual reveal">
+        <div class="dash">
+          <div class="dash-header">
+            <span class="dash-title">Q2 2026 · Company OKRs</span>
+            <span class="dash-period">8 weeks left</span>
+          </div>
+
+          <div class="okr-item">
+            <div class="okr-label">
+              <span class="okr-name">🚀 Launch in 3 new markets</span>
+              <span class="okr-pct">78%</span>
+            </div>
+            <div class="okr-bar"><div class="okr-fill" style="width:78%"></div></div>
+          </div>
+
+          <div class="okr-item">
+            <div class="okr-label">
+              <span class="okr-name">📈 Grow ARR to €5M</span>
+              <span class="okr-pct">62%</span>
+            </div>
+            <div class="okr-bar"><div class="okr-fill" style="width:62%"></div></div>
+          </div>
+
+          <div class="okr-item">
+            <div class="okr-label">
+              <span class="okr-name">⭐ NPS above 55</span>
+              <span class="okr-pct">91%</span>
+            </div>
+            <div class="okr-bar"><div class="okr-fill" style="width:91%"></div></div>
+          </div>
+
+          <div class="okr-item">
+            <div class="okr-label">
+              <span class="okr-name">🤝 Hire 12 senior engineers</span>
+              <span class="okr-pct">50%</span>
+            </div>
+            <div class="okr-bar"><div class="okr-fill" style="width:50%"></div></div>
+          </div>
+
+          <div class="dash-footer">
+            <div class="kpi"><div class="kpi-val">24</div><div class="kpi-lbl">Active OKRs</div></div>
+            <div class="kpi"><div class="kpi-val">8</div><div class="kpi-lbl">Teams</div></div>
+            <div class="kpi"><div class="kpi-val">70%</div><div class="kpi-lbl">Avg. progress</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div id="cta">
+  <div class="cta-inner">
+    <div class="cta-text reveal">
+      <div class="section-tag">Get started today</div>
+      <h2>Ready to make your goals <em>unstoppable?</em></h2>
+      <p>Try EasyOKR free for 14 days. No credit card required. Teams are up and running in minutes, not weeks.</p>
+      <a href="mailto:info@easyokr.eu" class="btn-light">Start free trial</a>
+      <div class="contact-info">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Questions? Email us at <a href="mailto:info@easyokr.eu">info@easyokr.eu</a>
+      </div>
+    </div>
+
+    <div class="cta-features reveal">
+      <ul class="cta-feature-list">
+        <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Free 14-day trial, no credit card required</li>
+        <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Unlimited OKRs and key results</li>
+        <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Onboarding support included</li>
+        <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>GDPR compliant · Data hosted in EU</li>
+        <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>SSO and enterprise security</li>
+        <li><div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Cancel anytime</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <a href="#" class="logo">Easy<span>OKR</span></a>
+      <p>A product by Lachica Systems AS · Oslo, Norway</p>
+    </div>
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="mailto:info@easyokr.eu">Contact</a>
+      <a href="#">Privacy policy</a>
+    </div>
+    <div class="footer-right">
+      <p><a href="mailto:info@easyokr.eu">info@easyokr.eu</a></p>
+      <p style="margin-top:4px;">© 2026 Lachica Systems AS</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => { entry.target.classList.add('visible'); }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
